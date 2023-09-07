@@ -11,7 +11,7 @@ flutter_bloc: Bloc cho flutter
 angular_bloc: Bloc cho angular web 
 
 #  https://bloclibrary.dev/#/coreconcepts
-bản chất sâu sa của của bloc là sử dụng Stream của Dart
+bản chất sâu sa của của bloc là sử dụng Stream của Dart - RX dart
 Stream như 1 ống nước , và các data là nước chảy trong ống nước đó
 
 a stream is a sequence of asynchronous data
@@ -160,3 +160,7 @@ RepositoryProvider
 MultiRepositoryProvider
 
 # demo_ft_bloc
+
+
+
+

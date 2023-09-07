@@ -1,8 +1,9 @@
-import 'package:demo_ft_bloc/demo_cubit_bloc/bloc/person_bloc.dart';
-import 'package:demo_ft_bloc/demo_cubit_bloc/bloc/person_state.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tuple/tuple.dart';
+
+import 'package:demo_ft_bloc/demo_cubit_bloc/bloc/person_bloc.dart';
+import 'package:demo_ft_bloc/demo_cubit_bloc/bloc/person_state.dart';
 
 class CubitBlocScreen extends StatefulWidget {
   const CubitBlocScreen({Key? key}) : super(key: key);
@@ -24,8 +25,8 @@ class _CubitBlocScreenState extends State<CubitBlocScreen> {
             children: [
               Text('xin chào các bạn'),
 
-              //------------BLocBuilder-----
-              BlocBuilder<PersonBloc, PersonState>(
+              //------------BLocBuilder----- : build widget dựa trên state trong bloc 
+              BlocBuilder<PersonBloc, PersonState>( // tham số generate thứ 2 là kiểu dưx liệu của state
                   builder: (context, state) => Column(
                         children: [
                           Text("Sử dụng BlocBuilder"),
@@ -35,8 +36,8 @@ class _CubitBlocScreenState extends State<CubitBlocScreen> {
               const SizedBox(
                 height: 20,
               ),
-              //-----------BlocSelector-------
-              BlocSelector<PersonBloc, PersonState, String>(
+              //-----------BlocSelector-------: Build widget dựa trên state trong bloc nhưng có chọn lọc state nào 
+              BlocSelector<PersonBloc, PersonState, String>(   // generate thứ 3 là kiểu dữ liệu của state 
                   selector: ((state) => state.position),
                   builder: ((context, state) {
                     return Column(
@@ -51,8 +52,8 @@ class _CubitBlocScreenState extends State<CubitBlocScreen> {
               ),
 
               //--------BlocSelector + Tuple123
-              BlocSelector<PersonBloc, PersonState, Tuple2<String, String>>(
-                // Khi nào mà lấy từ 2 trường state trở lên thì mới phải sử dụng Tuple2 , còn không có thể sử dụng BlocSelector bình thường
+              // Khi nào mà lấy từ 2 trường state trở lên thì mới phải sử dụng Tuple2 , còn không có thể sử dụng BlocSelector để chọn 1 state duy nhất như bình thường
+              BlocSelector<PersonBloc, PersonState, Tuple2<String, String>>(     // 2 tham số Generate của Tuple2 là kiểu dữ liệu của state
                 selector: (state) => Tuple2(state.fullName, state.position),
                 builder: ((context, state) => Column(
                       children: [
@@ -68,13 +69,15 @@ class _CubitBlocScreenState extends State<CubitBlocScreen> {
 
               //--------BlocListener---------
               BlocListener<PersonBloc, PersonState>(
+                  //BlocListener chỉ làm thao tác sử ký dữ liệu chứ không có hàm build để xử lý giao diện 
+                  // nó có tham số child: để có thể vẽ giao diện bên trong 
                 listenWhen: (previous, current) =>
                     current.age == 20, // Khi listenWhen trả ra 1 kết quả là true thì listener sẽ được chạy
                 listener: (context, state) {
                   print("State đã được thay đổi tuổi đã là 20");
 
                   //Có thể gọi hàm thay đổi state ở ngay đây
-                  //BlocListener chỉ làm thao tác sử ký dữ liệu chứ không có hàm build để xử lý giao diện 
+                  //BlocListener chỉ làm thao tác sử lý dữ liệu chứ không có hàm build để xử lý giao diện 
                   context.read<PersonBloc>().emit(state.copyWith(age: 30));
                 },
                 child: Text(' Số tuổi của bạn '),

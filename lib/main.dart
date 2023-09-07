@@ -1,11 +1,18 @@
+import 'package:demo_ft_bloc/demo_cubit/CounterApp.dart';
 import 'package:demo_ft_bloc/demo_cubit_bloc/cubit_bloc_screen.dart';
+import 'package:demo_ft_bloc/demo_cubit/CounterApp.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MaterialApp(
-    home: CubitBlocScreen(), // /MaterialApp thì có home
+    // home: CubitBlocScreen(), // /MaterialApp thì có home
+    home: CounterApp(), 
   ));
 }
+
+
+
+
 
 
 // https://pub.dev/packages/flutter_bloc
@@ -26,12 +33,13 @@ void main() {
  * bloc nhận sự kiện và thay đổi state tương ứng với sự kiện 
  * Các sự kiện được phát sẽ kích hoạt onEvent và làm thay đổi state
  * Sau đó các sự kiện được điều chỉnh thông qua 1 eventTransformer 
- * Theo mặc định mỗi sự kiện được sử lý đồng thời nhưng một EventTransformer tuỳ chỉnh có thể được cung cấp để điều khiển luồn sự kiện đến 
+ * Theo mặc định mỗi sự kiện được sử lý đồng thời nhưng một EventTransformer tuỳ chỉnh có thể được cung cấp để điều khiển luồng sự kiện đến 
  * Tất cả các EventHandlers đã đăng ký cho loại sự kiện đó sau đó sẽ được gọi cùng với sự kiện đến 
- * Mỗi EventHandler chịu trách nghiệm tạo ra không hoặc nhiều state để  phản ứng với sự kiện 
- * Cuối cùng onTransiton được gọi ngay trước khi state được cập nhật và chứa state hiện tại + sự kiện + state tiếp theo
+ * Mỗi EventHandler chịu trách nhiệm tạo ra không hoặc nhiều state để  phản ứng với sự kiện 
+ * Cuối cùng onTransition được gọi ngay trước khi state được cập nhật và chứa state hiện tại + sự kiện + state tiếp theo
  * 
  * Creating a Bloc
+ * 
 /// The events which `CounterBloc` will react to.
 abstract class CounterEvent {}
 
@@ -48,6 +56,7 @@ class CounterBloc extends Bloc<CounterEvent, int> {
     on<CounterIncrementPressed>((event, emit) => emit(state + 1));
   }
 }
+
 Using a Bloc
 Future<void> main() async {
   /// Create a `CounterBloc` instance.
@@ -71,7 +80,7 @@ Future<void> main() async {
 }
 
 Observing a Bloc
-Giống như cubit vì đều được extends từ BlocBase, onChange và onError có thể được overridden trong Bloc
+Giống như cubit vì đều được extends từ BlocBase, onChange và onError có thể được overide trong Bloc
 Hơn cubit , thì bloc có thể ghi đè onEvent và onTransition 
 onEvents được gọi khi bất kỳ khi nào một sự kiện được thêm vào bloc 
 onTransition tương tự như onChange, tuy nhiên nó chứa sự kiện kích hoạt + state curent + state next
@@ -223,7 +232,7 @@ BlocProvider(
   child: ChildA(),
 );
 
-Trong một số trường hợp, BlocProvider có thể được sử dụng để cung cấp một bloc hiện có cho một phần mới của cây widget con.
+BlocProvider.value:  Trong một số trường hợp, BlocProvider có thể được sử dụng để cung cấp một bloc hiện có cho một phần mới của cây widget con.
 Điều này sẽ được sử dụng phổ biến nhất khi một bloc hiện có cần được cung cấp cho một tuyến đường mới.
  Trong trường hợp này, BlocProvider sẽ không tự động đóng bloc vì nó không tạo nó.
 
@@ -314,7 +323,7 @@ BlocListener<BlocA, BlocAState>(
 Để kiểm soát listener khi nào state thay đổi như thế nào mới được chạy lại thì dùng listenWhen 
 listenWhen lấy state bloc trước đó và state bloc hiện tại và trả về một boolean.
 Nếu listenWhen trả về true, thì listener sẽ được gọi với state.
- Nếu listenWhen trả về false, thì listener sẽ không được gọi với state.
+Nếu listenWhen trả về false, thì listener sẽ không được gọi với state.
 
 
  BlocListener<BlocA, BlocAState>(
@@ -325,7 +334,7 @@ Nếu listenWhen trả về true, thì listener sẽ được gọi với state.
   listener: (context, state) {
     // do stuff here based on BlocA's state
   },
-  child: Container(),
+  child: Container(),   // BlocListener có tham số child để có thể vẽ View trong đó 
 )
  */
 

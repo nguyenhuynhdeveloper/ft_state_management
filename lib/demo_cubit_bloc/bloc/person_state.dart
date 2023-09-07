@@ -7,6 +7,10 @@ class PersonState {
     required this.position,
     required this.age,
   });
+
+
+
+  
   copyWith({String? fullName, String? position, int? age}) => PersonState(
       fullName: fullName ?? this.fullName,
       position: position ?? this.position,
