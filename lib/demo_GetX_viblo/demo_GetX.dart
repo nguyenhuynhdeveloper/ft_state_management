@@ -8,11 +8,7 @@ import 'package:get/route_manager.dart';
 import 'package:demo_ft_state_management/demo_GetX_viblo/DetailPage.dart';
 import 'package:demo_ft_state_management/demo_GetX_viblo/SearchPage.dart';
 
-class MyApp extends StatelessWidget {
-
-
-
-  
+class MyApp extends StatelessWidget {  
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
