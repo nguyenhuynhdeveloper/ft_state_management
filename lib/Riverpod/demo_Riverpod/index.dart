@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:demo_ft_state_management/demo_Riverpod/HomePage.dart';
-import 'package:demo_ft_state_management/demo_Riverpod/SecondHome.dart';
+import 'package:demo_ft_state_management/Riverpod/demo_Riverpod/HomePage.dart';
+import 'package:demo_ft_state_management/Riverpod/demo_Riverpod/SecondHome.dart';
 
 void main() {
   runApp(MaterialApp(

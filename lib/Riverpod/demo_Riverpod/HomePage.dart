@@ -1,8 +1,8 @@
-import 'package:demo_ft_state_management/demo_Riverpod/riverpod/IncrementNotifier.dart';
+import 'package:demo_ft_state_management/Riverpod/demo_Riverpod/riverpod/IncrementNotifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hooks_riverpod/hooks_riverpod.dart';
-import 'package:demo_ft_state_management/demo_Riverpod/riverpod/counterProvider.dart';
+import 'package:demo_ft_state_management/Riverpod/demo_Riverpod/riverpod/counterProvider.dart';
 
 final valueProvider = Provider<int>((ref) {
   return 36;
