@@ -4,7 +4,7 @@ import 'package:uuid/uuid.dart';
 
 const _uuid = Uuid();
 
-/// A read-only description of a todo-item
+// Tạo 1 class của đối tượng việc cần làm có các property description , is, completed 
 @immutable
 class Todo {
   const Todo({
@@ -23,7 +23,8 @@ class Todo {
   }
 }
 
-/// An object that controls a list of [Todo].
+// Tạo 1 class Todo List extends Notifier Để có thể làm state cho NotifierProvider 
+// Tại class này định nghĩa các hàm sẵn để thay đổi gía trị của State trong Provider 
 class TodoList extends Notifier<List<Todo>> {
   @override
   List<Todo> build() => [
@@ -32,6 +33,7 @@ class TodoList extends Notifier<List<Todo>> {
         const Todo(id: 'todo-2', description: 'Have a walk'),
       ];
 
+// Thêm việc làm vào danh sáchh việc làm 
   void add(String description) {
     state = [
       ...state,
@@ -42,6 +44,7 @@ class TodoList extends Notifier<List<Todo>> {
     ];
   }
 
+// Thay đổi giá trị completed của việc làm 
   void toggle(String id) {
     state = [
       for (final todo in state)
@@ -56,6 +59,7 @@ class TodoList extends Notifier<List<Todo>> {
     ];
   }
 
+// Sửa đổi giá trị của Việc làm 
   void edit({required String id, required String description}) {
     state = [
       for (final todo in state)
@@ -70,6 +74,7 @@ class TodoList extends Notifier<List<Todo>> {
     ];
   }
 
+// Xoá 1 việc làm khỏi danh sách
   void remove(Todo target) {
     state = state.where((todo) => todo.id != target.id).toList();
   }
