@@ -4,6 +4,11 @@ import 'package:hooks_riverpod/hooks_riverpod.dart';
 
 import 'todo.dart';
 
+// Trong ứng dụng sử dụng 3 loại Provider 
+// Provider : State không thay đổi 
+// StateProvider : State kiểu đơn giản có thể thay đổi giá trị state
+// NotifierProvider : State kiểu phức tạp có thể thay đổi giá trị của state -- state cần được extends Notifier
+
 // Một vài key sử 
 final addTodoKey = UniqueKey();
 final activeFilterKey = UniqueKey();
@@ -54,9 +59,9 @@ final filteredTodos = Provider<List<Todo>>((ref) {   // <List<Todo>>  : là ki�
   }
 });
 
-void main() {
-  runApp(const ProviderScope(child: MyApp()));
-}
+// void main() {
+//   runApp(const ProviderScope(child: MyApp()));
+// }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);

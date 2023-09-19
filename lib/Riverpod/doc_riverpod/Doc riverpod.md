@@ -1,24 +1,26 @@
+#### https://riverpod.dev/docs/concepts/providers
+
 ## Providers
 
-Nhà cung cấp là phần quan trọng nhất của ứng dụng Riverpod. Nhà cung cấp là một đối tượng đóng gói một phần trạng thái và cho phép lắng nghe trạng thái đó.
+Provider là phần quan trọng nhất của ứng dụng Riverpod. Provider là một đối tượng đóng gói một phần trạng thái và cho phép lắng nghe trạng thái đó.
 
 ## Why use providers?
 
-Cho phép dễ dàng truy cập trạng thái đó ở nhiều vị trí. Các nhà cung cấp là sự thay thế hoàn toàn cho các mẫu như Singletons, Bộ định vị dịch vụ, Dependency Insert hoặc InheritedWidge
+Cho phép dễ dàng truy cập trạng thái đó ở nhiều vị trí. Các Provider là sự thay thế hoàn toàn cho các mẫu như Singletons, Bộ định vị dịch vụ, Dependency Insert hoặc InheritedWidge
 
 Đơn giản hoá việc kết hợp state này với state khác , Giúp hợp nhất nhiều state lại thành 1
 
 ## Creating a provider
 
-Các nhà cung cấp có nhiều biến thể, nhưng tất cả đều hoạt động theo cùng một cách. Cách sử dụng phổ biến nhất là khai báo chúng dưới dạng hằng số toàn cục như sau:
+Các Provider có nhiều biến thể, nhưng tất cả đều hoạt động theo cùng một cách. Cách sử dụng phổ biến nhất là khai báo chúng dưới dạng hằng số toàn cục như sau:
 
 final myProvider = Provider((ref) {
 return MyValue();
 });
 
-Các nhà cung cấp là hoàn toàn bất biến. Khai báo một nhà cung cấp không khác gì khai báo một hàm và các nhà cung cấp có thể kiểm tra và bảo trì được.
+Các Provider là hoàn toàn bất biến. Khai báo một Provider không khác gì khai báo một hàm và các Provider có thể kiểm tra và bảo trì được.
 
-final myProvider , phần khai báo một biến. Biến này là những gì chúng tôi sẽ sử dụng trong tương lai để đọc trạng thái của nhà cung cấp của chúng tôi. Các nhà cung cấp phải luôn là final .
+final myProvider , phần khai báo một biến. Biến này là những gì chúng tôi sẽ sử dụng trong tương lai để đọc trạng thái của Provider của chúng tôi. Các Provider phải luôn là final .
 
 Provider là basic nhất trong tất cả providers , nó cung cấp 1 giá trị không bao giờ thay đổi , để có thể thay đổi sử dụng StreamProvider hoặc StateNotifierProvider
 
@@ -75,7 +77,7 @@ final repository = ref.watch(repositoryProvider);
 return SomeValue(repository);
 })
 
-Trường hợp sử dụng phổ biến nhất là chuyển ref của nhà cung cấp tới StateNotifier
+Trường hợp sử dụng phổ biến nhất là chuyển ref của Provider tới StateNotifier
 
 final counterProvider = StateNotifierProvider<Counter, int>((ref) {
 return Counter(ref);
@@ -94,7 +96,7 @@ repository.post('...');
 }
 }
 
-Làm như vậy cho phép lớp Counter của chúng tôi đọc các nhà cung cấp.
+Làm như vậy cho phép lớp Counter của chúng tôi đọc các Provider.
 
 # ######## Obtaining a "ref" from a widget
 
@@ -246,13 +248,13 @@ Bằng cách dựa vào ref.watch, ứng dụng của bạn trở nên vừa ph�
 
 ref.watch có thể sử dụng bên trong build method của widget hoặc bên trong body của provider để widget/provider có thể lắng nghe provider
 
-Ví dụ: nhà cung cấp có thể sử dụng ref.watch để kết hợp nhiều nhà cung cấp thành một giá trị mới.
+Ví dụ: Provider có thể sử dụng ref.watch để kết hợp nhiều Provider thành một giá trị mới.
 
-Một ví dụ sẽ lọc danh sách việc cần làm. Chúng ta có thể có hai nhà cung cấp:
-filterTypeProvider, nhà cung cấp hiển thị loại bộ lọc hiện tại (không có, chỉ hiển thị các tác vụ đã hoàn thành, ...)
-todosProvider, nhà cung cấp hiển thị toàn bộ danh sách nhiệm vụ
+Một ví dụ sẽ lọc danh sách việc cần làm. Chúng ta có thể có hai Provider:
+filterTypeProvider, Provider hiển thị loại bộ lọc hiện tại (không có, chỉ hiển thị các tác vụ đã hoàn thành, ...)
+todosProvider, Provider hiển thị toàn bộ danh sách nhiệm vụ
 
-Và bằng cách sử dụng ref.watch, chúng tôi có thể tạo nhà cung cấp thứ ba kết hợp cả hai nhà cung cấp để tạo danh sách nhiệm vụ được lọc:
+Và bằng cách sử dụng ref.watch, chúng tôi có thể tạo Provider thứ ba kết hợp cả hai Provider để tạo danh sách nhiệm vụ được lọc:
 
 final filterTypeProvider = StateProvider<FilterType>((ref) => FilterType.none);
 final todosProvider = StateNotifierProvider<TodoList, List<Todo>>((ref) => TodoList());
@@ -278,7 +280,7 @@ Danh sách đã lọc cũng sẽ tự động cập nhật nếu bộ lọc ho�
 
 Đồng thời, danh sách đã lọc sẽ không được tính toán lại nếu cả bộ lọc và danh sách tác vụ đều không thay đổi
 
-Tương tự, một tiện ích có thể sử dụng ref.watch để hiển thị nội dung từ nhà cung cấp và cập nhật giao diện người dùng bất cứ khi nào nội dung đó thay đổi:
+Tương tự, một tiện ích có thể sử dụng ref.watch để hiển thị nội dung từ Provider và cập nhật giao diện người dùng bất cứ khi nào nội dung đó thay đổi:
 
 final counterProvider = StateProvider((ref) => 0);
 
