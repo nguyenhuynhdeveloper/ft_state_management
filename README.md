@@ -5,7 +5,7 @@ Bloc : cầu kỳ hơn , tường mình , code nhiều hơn , dự án to chà b
 Provider : dự án bé , yếu hơn , các thức code , công năng
 
 
-// Ví dụ xin 1 công ty , mà chỗ đó dev nó chuyên dùgn bloc chẳng hạn ,
+// Ví dụ xin 1 công ty , mà chỗ đó dev nó chuyên dùng bloc chẳng hạn ,
 passpv , cho 1 2 tuần 
 3, 4    hôm là biết dùng : có người chỉ , 
 
