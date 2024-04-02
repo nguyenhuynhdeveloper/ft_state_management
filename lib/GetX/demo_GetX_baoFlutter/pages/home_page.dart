@@ -14,7 +14,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  late TextEditingController nameController, zaloController,websiteController,  descriptionController;
+  late TextEditingController nameController,
+      zaloController,
+      websiteController,
+      descriptionController;
 
   @override
   void initState() {
@@ -39,13 +42,25 @@ class _HomePageState extends State<HomePage> {
           child: Column(
             children: [
               // name input
-              inputWidget(label: NAME, hintText: NAME_INPUT, controller: nameController),
+              inputWidget(
+                  label: NAME,
+                  hintText: NAME_INPUT,
+                  controller: nameController),
               // Zalo input
-              inputWidget(label: ZALO, hintText: ZALO_INPUT, controller: zaloController),
+              inputWidget(
+                  label: ZALO,
+                  hintText: ZALO_INPUT,
+                  controller: zaloController),
               // Website input
-              inputWidget(label: WEBSITE, hintText: WEBSITE_INPUT, controller: websiteController),
+              inputWidget(
+                  label: WEBSITE,
+                  hintText: WEBSITE_INPUT,
+                  controller: websiteController),
               // description input
-              inputWidget(label: DESCRIPTION, hintText: DESCRIPTION_INPUT, controller: descriptionController),
+              inputWidget(
+                  label: DESCRIPTION,
+                  hintText: DESCRIPTION_INPUT,
+                  controller: descriptionController),
               // confirm button
               buttonWidget(
                   lable: CONFIRM,
@@ -54,24 +69,26 @@ class _HomePageState extends State<HomePage> {
                   onPress: () {
                     // update information to Provider  : Cập nhật các state tới Provider của GetX
 
-                    // Cách khai báo state dạng biến thường 
+                    // Cách khai báo state dạng biến thường
                     // Get.put(Information()).abc(
                     //     name: nameController.text, zalo: zaloController.text, website: websiteController.text, description: descriptionController.text);
 
-                    // Để thay đổi giá trị 
+                    // Để thay đổi giá trị
                     // Cách khai báo state dạng  .obs
                     // Get.put(Information()).abc(
                     //     name: nameController.text.obs, zalo: zaloController.text.obs, website: websiteController.text.obs, description: descriptionController.text.obs);
-                   // Giá trị trong controlner sẽ thay đổi 
+                    // Giá trị trong controlner sẽ thay đổi
 
-                       Get.put(Information()).onlyUpDateName(
-                        name: nameController.text.obs);
+                    Get.put(Information())
+                        .onlyUpDateName(name: nameController.text.obs);
 
-                    // Để chuyển sang màn thông tin chi tiết 
+                    // Để chuyển sang màn thông tin chi tiết
                     // Routing to Information Page
-                    Get.to(InformationPage());
+                    Get.to(
+                        InformationPage()); // Có thể trọc thẳng tới class màn hình đó mà k cần khai báo tuyến đường gì cả
 
-                    Get.put(DemoState());   // Cần bắt buộc put 1 lần để có thể lấy ra giá trị state
+                    Get.put(
+                        DemoState()); // Cần bắt buộc put 1 lần để có thể lấy ra giá trị state
                   })
             ],
           ),
