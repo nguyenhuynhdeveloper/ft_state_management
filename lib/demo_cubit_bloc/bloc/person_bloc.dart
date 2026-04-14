@@ -1,15 +1,18 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:demo_ft_bloc/demo_cubit_bloc/bloc/person_state.dart';
 
+// Định nghĩa state initial của class PersonState
 PersonState initialState =
     PersonState(fullName: "nguyen van A", position: "tech", age: 0);
 
 class PersonBloc extends Cubit<PersonState> {
-  // PersonBloc(super.initialState);    // Cách viết 1 
-  PersonBloc()
-      : super(PersonState(fullName: "nguyen van A", position: "Tech", age: 0));   // Cách viết 2
+  // PersonBloc(super.initialState);    // Cách viết 1
 
-  //Các hàm được định nghĩa sẵn để thay đổi state
+  PersonBloc()
+      : super(PersonState(
+            fullName: "nguyen van A", position: "Tech", age: 0)); // Cách viết 2
+
+  //Các hàm được định nghĩa sẵn cho cubit để thay đổi state
   void changeFullName(params) {
     emit(state.copyWith(fullName: params));
   }

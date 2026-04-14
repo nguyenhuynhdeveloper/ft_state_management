@@ -1,12 +1,12 @@
-import 'package:demo_ft_bloc/demo_cubit/CounterApp.dart';
+import 'package:demo_ft_bloc/demo_cubit_basic/CounterApp.dart';
 import 'package:demo_ft_bloc/demo_cubit_bloc/cubit_bloc_screen.dart';
-import 'package:demo_ft_bloc/demo_cubit/CounterApp.dart';
+import 'package:demo_ft_bloc/demo_cubit_basic/CounterApp.dart';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(const MaterialApp(
-    // home: CubitBlocScreen(), // /MaterialApp thì có home
-    home: CounterApp(), 
+    home: CubitBlocScreen(), // /MaterialApp thì có home
+    // home: CounterApp(),
   ));
 }
 
