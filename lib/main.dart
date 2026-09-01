@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'counter_page.dart';
-import 'counter_cubit.dart';
 
 void main() => runApp(CounterApp());
 
@@ -11,10 +8,13 @@ class CounterApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: BlocProvider(
-        // Nơi khởi tạo Bloc
-        create: (_) => CounterCubit(),
-        child: CounterPage(),
+      home: Scaffold(
+        appBar: AppBar(
+          title: Text('Counter App'),
+        ),
+        body: Center(
+          child: Text('Hello, World!'),
+        ),
       ),
     );
   }
